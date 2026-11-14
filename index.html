@@ -136,10 +136,10 @@ const MODS={dash:['🏠','Dashboard'],profile:['👤','Patient Profile'],history
 const ROLENAMES={Yoga:'Yoga Instructor'};
 let role,cur,hist=[];
 const root=document.documentElement;
-function setTheme(t){root.dataset.theme=t;document.querySelectorAll('.tgl').forEach(b=>b.textContent=t=='dark'?'☀️ Light':'🌙 Dark');try{localStorage.setItem('th',t)}catch(e){}}
-let t0;try{t0=localStorage.getItem('th')}catch(e){}
-setTheme(t0||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));
-document.querySelectorAll('.tgl').forEach(b=>b.onclick=()=>setTheme(root.dataset.theme=='dark'?'light':'dark'));
+function setTheme(t){root.dataset.theme=t;document.querySelectorAll('.tgl').forEach(b=>b.textContent=t=='dark'?'☀️ Light':'🌙 Dark')}
+let t0;try{t0=localStorage.getItem('theme-choice')}catch(e){}
+setTheme(t0==='dark'?'dark':'light');
+document.querySelectorAll('.tgl').forEach(b=>b.onclick=()=>{const n=root.dataset.theme=='dark'?'light':'dark';setTheme(n);try{localStorage.setItem('theme-choice',n)}catch(e){}});
 function toLogin(){$('#app').style.display='none';$('#login').style.display='grid';hist=[];cur=null}
 $('#back').onclick=()=>hist.length?go(hist.pop(),false):toLogin();
 
